@@ -1,14 +1,11 @@
-from django.urls import include, path
-from rest_framework import routers
+from django.urls import path
 
-from .views import *
+from megafinance import api
 
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
+from .api import *
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('megafinance/clientes/api/', api.ListagemClientes.as_view()),
+    path('megafinance/detalhe-cliente/api/<int:pk>/', api.DetalhesCliente.as_view())
 ]
 

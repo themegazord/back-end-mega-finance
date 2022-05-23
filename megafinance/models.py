@@ -31,7 +31,7 @@ class Cliente(models.Model):
     cep_cliente = models.CharField(max_length=9, default='', verbose_name='CEP')
     complemento_endereco_cliente = models.CharField(max_length=155, verbose_name='Complemento', blank=True, null=True)
     bairro_endereco_cliente = models.CharField(max_length=155, verbose_name='Bairro')
-    email_cliente = models.EmailField(verbose_name='E-mail')
+    email_cliente = models.EmailField(verbose_name='E-mail', blank=True, null=True)
 
     def __str__(self):
         return self.nome_completo_cliente
