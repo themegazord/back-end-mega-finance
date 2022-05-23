@@ -56,9 +56,10 @@ Com o servidor ligado, basta consumir suas api's.
 
 ## API's
 
-Listagem de Clientes **[GET]**:
+Listagem de Clientes
+Metodos = **[GET]**
 
-http://127.0.0.1:8000/megafinance/clientes/api/
+Link: http://127.0.0.1:8000/megafinance/clientes/api/
 
 Exemplo de retorno de um usuário
 
@@ -82,9 +83,10 @@ Exemplo de retorno de um usuário
 ```
 
 
-Cadastro de Clientes **[POST]**:
+Cadastro de Clientes
+Metodos = **[POST]**
 
-http://127.0.0.1:8000/megafinance/clientes/api/
+Link: http://127.0.0.1:8000/megafinance/clientes/api/
 
 **Observações**
 
@@ -114,9 +116,6 @@ Os campos status_cliente e tipo_cliente terão 2 possibilidade:
 4. CEP
 5. Bairro
 
-**Campos únicos**
-
-Caso haja criação de de clientes com o mesmo CPF ou CNPJ a API retornará 400 - Bad Request com o seguinte corpo
 
 ```
 {
@@ -125,6 +124,15 @@ Caso haja criação de de clientes com o mesmo CPF ou CNPJ a API retornará 400 
     ]
 }
 ```
+
+<br>
+
+
+Consulta detalhada de clientes.
+
+Link: http://127.0.0.1:8000/megafinance/detalhe-cliente/api/**id_do_cliente**/
+
+Metodos: **[GET], [PATCH], [DELETE]**
 
 
 

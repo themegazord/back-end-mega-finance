@@ -23,7 +23,7 @@ class Cliente(models.Model):
     tipo_cliente = models.CharField(max_length=1, choices=TIPO_CLIENTE_CHOICES, default='', verbose_name='Tipo do Cliente')
     nome_completo_cliente = models.CharField(max_length=155, verbose_name='Nome do Cliente')
     cpf_cliente = models.CharField(max_length=14, unique=True, blank=True, null=True, verbose_name='CPF')
-    cnpj_cliente = models.CharField(max_length=18, unique=True, blank=True, null=True, verbose_name='CNPJ')
+    cnpj_cliente = models.CharField(max_length=18, blank=True, null=True, verbose_name='CNPJ')
     telefone1_cliente = models.CharField(max_length=25, blank=True, null=True, verbose_name='Telefone Fixo')
     telefone2_cliente = models.CharField(max_length=25, blank=True, null=True, verbose_name='Telefone Celular')
     rua_endereco_cliente = models.CharField(max_length=155, verbose_name='Endereço')

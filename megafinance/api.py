@@ -35,10 +35,9 @@ class DetalhesCliente(APIView):
         serializer = ClientesSerializer(cliente)
         return Response(serializer.data)
 
-    @csrf_exempt
-    def put(self, request, pk, format=None):
+    def patch(self, request, pk, format=None):
         cliente = self.get_object(pk)
-        serializer = ClientesSerializer(cliente, data=request.data)
+        serializer = ClientesSerializer(cliente, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
