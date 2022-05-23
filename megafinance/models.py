@@ -62,7 +62,7 @@ class Fornecedor(models.Model):
     cep_fornecedor = models.CharField(max_length=9, default='', verbose_name='CEP')
     complemento_endereco_fornecedor = models.CharField(max_length=155,blank=True, null=True, verbose_name='Complemento')
     bairro_endereco_fornecedor = models.CharField(max_length=155, verbose_name='Bairro')
-    email_fornecedor = models.EmailField(verbose_name='Email do Fornecedor')
+    email_fornecedor = models.EmailField(verbose_name='Email do Fornecedor', blank=True, null=True)
 
     def __str__(self):
         return self.nome_fornecedor

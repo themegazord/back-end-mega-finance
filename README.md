@@ -135,6 +135,80 @@ Link: http://127.0.0.1:8000/megafinance/detalhe-cliente/api/**id_do_cliente**/
 Metodos: **[GET], [PATCH], [DELETE]**
 
 
+<br>
+
+
+Listagem de Fornecedores
+
+Metodos: **[GET][POST]**
+Link: http://127.0.0.1:8000/megafinance/fornecedores/api/
+
+Exemplo de retorno:
+
+```
+    {
+        "cod_fornecedor": 2,
+        "status_fornecedor": "A",
+        "tipo_fornecedor": "F",
+        "nome_fornecedor": "Bernardo e Liz Entregas Expressas ME",
+        "cpf_fornecedor": null,
+        "cnpj_fornecedor": "99.073.177/0001-85",
+        "telefone1_fornecedor": "(14) 3938-7755",
+        "telefone2_fornecedor": "(14) 98541-2820",
+        "rua_endereco_fornecedor": "Rua Santa Lúcia",
+        "numero_endereco_fornecedor": "294",
+        "cep_fornecedor": "17032-140",
+        "complemento_endereco_fornecedor": null,
+        "bairro_endereco_fornecedor": "Jardim Redentor",
+        "email_fornecedor": "estoque@bernardoelizentregasexpressasme.com.br"
+    }
+
+```
+
+**Observações**
+
+**Campos de escolha**
+
+Os campos status_fornecedor e tipo_fornecedor terão 2 possibilidade:
+```
+    STATUS_FORNECEDORES_CHOICES = [
+        ('A', 'Ativo'),
+        ('I', 'Inativo')
+    ]
+
+    TIPO_FORNECEDOR_CHOICES = [
+        ('F', 'Pessoa Fisica'),
+        ('J', 'Pessoa Juridica')
+    ]
+```
+
+**Campos obrigatórios**
+
+1. Nome do Cliente
+2. Endereço
+3. Número do endereço
+4. CEP
+5. Bairro
+
+Caso dado POST em um fornecedor que já tem CNPJ ou CPF cadastrado, 400 será retornado com a seguinte mensagem
+
+```
+{
+    "cpf_cliente": [
+        "cliente com este CPF já existe."
+    ]
+}
+```
+
+
+
+Detalhes de Fornecedores
+Metodo: **[GET][PATCH][DELETE]**
+
+Link: http://127.0.0.1:8000/megafinance/detalhe-fornecedor/api/**codigo_do_fornecedor**
+
+
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
