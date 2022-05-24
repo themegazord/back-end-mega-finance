@@ -14,3 +14,21 @@ class FornecedorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fornecedor
         fields = ['cod_fornecedor', 'status_fornecedor', 'tipo_fornecedor', 'nome_fornecedor', 'cpf_fornecedor', 'cnpj_fornecedor', 'telefone1_fornecedor', 'telefone2_fornecedor', 'rua_endereco_fornecedor', 'numero_endereco_fornecedor', 'cep_fornecedor', 'complemento_endereco_fornecedor', 'bairro_endereco_fornecedor', 'email_fornecedor']
+
+
+class TitulosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Titulo
+        fields = ['cod_titulo', 'status_titulo', 'descricao_titulo', 'pagar_receber_titulo', 'data_inicio_titulo', 'data_final_titulo']
+
+
+class ContasAPagarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Contas_A_Pagar
+        field = ['cod_contas_a_pagar', 'valor_titulo_a_pagar', 'valor_desconto_a_pagar']
+        nome_fornecedor_contas_a_pagar = serializers.PrimaryKeyRelatedField(
+            queryset=Fornecedor.objects.all()
+        )
+        cod_titulo = serializers.PrimaryKeyRelatedField(
+            queryset=Titulo.objects.all()
+        )

@@ -84,7 +84,7 @@ class Titulo(models.Model):
     descricao_titulo = models.CharField(max_length=155, verbose_name='Descrição do Titulo')
     pagar_receber_titulo = models.CharField(max_length=1, choices=PAGAR_RECEBER_CHOICES, blank=True, null=True, default='', verbose_name='Pagar ou Receber')
     data_inicio_titulo = models.DateTimeField(default=timezone.now, verbose_name='Data de Inicio do Titulo')
-    data_final_titulo = models.DateTimeField(verbose_name='Data final do Titulo')
+    data_final_titulo = models.DateTimeField(verbose_name='Data final do Titulo', blank=True, null=True)
 
     def __str__(self):
         return self.descricao_titulo

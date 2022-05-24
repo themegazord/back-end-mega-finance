@@ -56,7 +56,18 @@ Com o servidor ligado, basta consumir suas api's.
 
 ## API's
 
-Listagem de Clientes
+### **Guia para as API's**
+
+1. [`Listagem dos Clientes`](#listagem-de-clientes)
+2. [`Detalhes do Cliente`](#detalhes-do-cliente)
+3. [`Listagem dos Fornecedores`](#listagem-de-fornecedores)
+4. [`Detalhes do Fornecedor`](#detalhes-do-fornecedor)
+5. [`Listagem dos Titulos`](#listagem-de-titulos)
+6. [`Detalhes do Titulo`](#detalhes-do-titulo)
+
+
+## Listagem de Clientes
+
 Metodos = **[GET]**
 
 Link: http://127.0.0.1:8000/megafinance/clientes/api/
@@ -84,13 +95,14 @@ Exemplo de retorno de um usuário
 
 
 Cadastro de Clientes
+
 Metodos = **[POST]**
 
 Link: http://127.0.0.1:8000/megafinance/clientes/api/
 
-**Observações**
+### **Observações**
 
-**Campos de escolha**
+### **Campos de escolha**
 
 Os campos status_cliente e tipo_cliente terão 2 possibilidade:
 ```
@@ -108,7 +120,7 @@ Os campos status_cliente e tipo_cliente terão 2 possibilidade:
 
 
 
-**Campos obrigatórios**
+### **Campos obrigatórios**
 
 1. Nome do Cliente
 2. Endereço
@@ -128,7 +140,7 @@ Os campos status_cliente e tipo_cliente terão 2 possibilidade:
 <br>
 
 
-Consulta detalhada de clientes.
+## Detalhes do cliente.
 
 Link: http://127.0.0.1:8000/megafinance/detalhe-cliente/api/**id_do_cliente**/
 
@@ -138,9 +150,10 @@ Metodos: **[GET], [PATCH], [DELETE]**
 <br>
 
 
-Listagem de Fornecedores
+## Listagem de Fornecedores
 
 Metodos: **[GET][POST]**
+
 Link: http://127.0.0.1:8000/megafinance/fornecedores/api/
 
 Exemplo de retorno:
@@ -165,9 +178,9 @@ Exemplo de retorno:
 
 ```
 
-**Observações**
+### **Observações**
 
-**Campos de escolha**
+### **Campos de escolha**
 
 Os campos status_fornecedor e tipo_fornecedor terão 2 possibilidade:
 ```
@@ -182,7 +195,7 @@ Os campos status_fornecedor e tipo_fornecedor terão 2 possibilidade:
     ]
 ```
 
-**Campos obrigatórios**
+### **Campos obrigatórios**
 
 1. Nome do Cliente
 2. Endereço
@@ -202,11 +215,41 @@ Caso dado POST em um fornecedor que já tem CNPJ ou CPF cadastrado, 400 será re
 
 
 
-Detalhes de Fornecedores
+## Detalhes do Fornecedor
+
 Metodo: **[GET][PATCH][DELETE]**
 
 Link: http://127.0.0.1:8000/megafinance/detalhe-fornecedor/api/**codigo_do_fornecedor**
 
+
+
+## Listagem de Titulos
+
+Metodo: **[GET][POST]**
+
+Link: http://127.0.0.1:8000/megafinance/titulos/api/
+
+### **Peculiariedades do POST**
+Pode ou não ser passado o parametro data_inicio_titulo, caso seja enviado, o servidor irá encaminhar ao banco de dados o que foi enviado, se não for enviado, o servidor pegará a data INSERT ao inserir na tabela.
+
+data_final_titulo aceita null, então, se o cliente não informar nada, deverá ser encaminhado null ao servidor, do contrário, encaminhado o que for passado como parametro.
+
+### **EXEMPLO DE POST**
+
+```
+{
+        "status_titulo": "F",
+        "descricao_titulo": "Compra de Ovo",
+        "pagar_receber_titulo": "P",
+        "data_final_titulo": null
+}
+```
+
+## Detalhes do Titulo
+
+Metodo: **[GET][PATCH][DELETE]**
+
+Link: http://127.0.0.1:8000/megafinance/detalhe-titulo/api/**codigo-do-titulo**
 
 
 
