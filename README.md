@@ -230,6 +230,7 @@ Metodo: **[GET][POST]**
 Link: http://127.0.0.1:8000/megafinance/titulos/api/
 
 ### **Peculiariedades do POST**
+
 Pode ou não ser passado o parametro data_inicio_titulo, caso seja enviado, o servidor irá encaminhar ao banco de dados o que foi enviado, se não for enviado, o servidor pegará a data INSERT ao inserir na tabela.
 
 data_final_titulo aceita null, então, se o cliente não informar nada, deverá ser encaminhado null ao servidor, do contrário, encaminhado o que for passado como parametro.
@@ -244,6 +245,11 @@ data_final_titulo aceita null, então, se o cliente não informar nada, deverá 
         "data_final_titulo": null
 }
 ```
+
+### **Campo Obrigatórios**
+
+1. Descrição do titulo
+
 
 ## Detalhes do Titulo
 
