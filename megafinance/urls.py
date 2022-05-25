@@ -14,5 +14,8 @@ urlpatterns = [
     #Api's Titulos
     path('megafinance/titulos/api/', api.ListagemTitulos.as_view()),
     path('megafinance/detalhe-titulo/api/<int:pk>/', api.DetalhesTitulos.as_view()),
+    #Api's Contas a Pagar
+    path('megafinance/contas_a_pagar/api/', api.ListagemContas_A_Pagar.as_view()),
+    path('megafinance/detalhe-contas-a-pagar/api/<int:pk>/', api.DetalhesContas_A_Pagar.as_view()),
 ]
 

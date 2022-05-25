@@ -64,6 +64,8 @@ Com o servidor ligado, basta consumir suas api's.
 4. [`Detalhes do Fornecedor`](#detalhes-do-fornecedor)
 5. [`Listagem dos Titulos`](#listagem-de-titulos)
 6. [`Detalhes do Titulo`](#detalhes-do-titulo)
+7. [`Listagem do Contas a Pagar`](#listagem-do-contas-a-pagar)
+8. [`Detalhes do Contas a Pagar`](#detalhes-do-contas-a-pagar)
 
 
 ## Listagem de Clientes
@@ -257,6 +259,48 @@ Metodo: **[GET][PATCH][DELETE]**
 
 Link: http://127.0.0.1:8000/megafinance/detalhe-titulo/api/**codigo-do-titulo**
 
+
+## Listagem do Contas a Pagar
+
+Metodo: **[GET][POST]**
+
+Link: http://127.0.0.1:8000/megafinance/contas_a_pagar/api/
+
+### **Exemplo de Retorno**
+
+```
+    {
+        "cod_contas_a_pagar": 4,
+        "valor_titulo_a_pagar": 200,
+        "valor_desconto_a_pagar": 0,
+        "nome_fornecedor_contas_a_pagar": 2,
+        "cod_titulo": 2
+    }
+```
+
+### **Campos Obrigatórios**
+
+1. Nome do Fornecedor
+2. Valor do Titulo
+3. Codigo do Titulo
+
+### **Peculiaridades do GET**
+
+Tanto fornecedor quanto o código do titulo virão apenas com a PK do elemento em sua determinada tabela. Para pegar essas informações, deverá ser consumido duas API's
+1. [`Detalhes do Fornecedor`](#detalhes-do-fornecedor)
+2. [`Detalhes do Titulo`](#detalhes-do-titulo)
+
+Ambas, você passará o PK que vier, nessas API para obter os dados de cada qual.
+
+### **Observação**
+
+Tanto essa, quanto a API de Contas a Receber, deverão aparecer na mesma tela, com os mesmo dados, pois uma vai ser atrelada a outra.
+
+## Detalhes do Contas a Pagar
+
+Metodo: **[GET][PATCH][DELETE]**
+
+Link: http://127.0.0.1:8000/megafinance/detalhe-contas-a-pagar/api/**codigo_do_contas_a_pagar**
 
 
 ## License

@@ -85,22 +85,21 @@ class Titulo(models.Model):
     pagar_receber_titulo = models.CharField(max_length=1, choices=PAGAR_RECEBER_CHOICES, blank=True, null=True, default='', verbose_name='Pagar ou Receber')
     data_inicio_titulo = models.DateTimeField(default=timezone.now, verbose_name='Data de Inicio do Titulo')
     data_final_titulo = models.DateTimeField(verbose_name='Data final do Titulo', blank=True, null=True)
-
-    def __str__(self):
-        return self.descricao_titulo
+    
 
 
 class Contas_A_Pagar(models.Model):
     cod_contas_a_pagar = models.SmallAutoField(primary_key=True, unique=True, verbose_name='Código Contas a Pagar')
-    nome_fornecedor_contas_a_pagar = models.ForeignKey(Fornecedor, on_delete=models.SET_NULL, null=True, blank=True, related_name='nome_fornecedor_contas_a_pagar', verbose_name='Nome fornecedor')
-    cod_titulo = models.OneToOneField(Titulo, on_delete=models.CASCADE, verbose_name='Código do Titulo')
+    nome_fornecedor_contas_a_pagar = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING, related_name='nome_fornecedor_contas_a_pagar', verbose_name='Nome fornecedor')
+    cod_titulo = models.ForeignKey(Titulo, on_delete=models.CASCADE, verbose_name='Código do Titulo')
     valor_titulo_a_pagar = models.PositiveIntegerField(verbose_name='Valor do Titulo')
     valor_desconto_a_pagar = models.PositiveIntegerField(
         validators=[
                 MinValueValidator(0), 
                 MaxValueValidator(100)
             ],
-            verbose_name='Desconto do Titulo'
+            verbose_name='Desconto do Titulo',
+            blank=True, null=True
         )
 
 
