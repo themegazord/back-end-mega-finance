@@ -59,13 +59,17 @@ Com o servidor ligado, basta consumir suas api's.
 ### **Guia para as API's**
 
 1. [`Listagem dos Clientes`](#listagem-de-clientes)
-2. [`Detalhes do Cliente`](#detalhes-do-cliente)
-3. [`Listagem dos Fornecedores`](#listagem-de-fornecedores)
-4. [`Detalhes do Fornecedor`](#detalhes-do-fornecedor)
-5. [`Listagem dos Titulos`](#listagem-de-titulos)
-6. [`Detalhes do Titulo`](#detalhes-do-titulo)
-7. [`Listagem do Contas a Pagar`](#listagem-do-contas-a-pagar)
-8. [`Detalhes do Contas a Pagar`](#detalhes-do-contas-a-pagar)
+2. [`Cadastro de Cliente`](#cadastro-de-clientes)
+3. [`Detalhes do Cliente`](#detalhes-do-cliente)
+4. [`Listagem dos Fornecedores`](#listagem-de-fornecedor)
+5. [`Cadastro de Fornecedor`](#cadastro-de-fornecedores)
+6. [`Detalhes do Fornecedor`](#detalhes-do-fornecedor)
+7. [`Listagem dos Titulos`](#listagem-de-titulos)
+8. [`Cadastro de Titulo`](#cadastro-de-titulo)
+9. [`Detalhes do Titulo`](#detalhes-do-titulo)
+10. [`Listagem do Contas a Pagar`](#listagem-do-contas-a-pagar)
+11. [`Cadastro de Contas a Pagar`](#cadastro-de-contas-a-pagar)
+12. [`Detalhes do Contas a Pagar`](#detalhes-do-contas-a-pagar)
 
 
 ## Listagem de Clientes
@@ -96,11 +100,31 @@ Exemplo de retorno de um usuário
 ```
 
 
-Cadastro de Clientes
+## Cadastro de Clientes
 
 Metodos = **[POST]**
 
-Link: http://127.0.0.1:8000/megafinance/clientes/api/
+Link: http://127.0.0.1:8000/megafinance/envia-cliente/api/
+
+### **Campos para POST**
+
+```
+    {
+        "status_cliente": ,
+        "tipo_cliente": ,
+        "nome_completo_cliente": ,
+        "cpf_cliente": ,
+        "cnpj_cliente": ,
+        "telefone1_cliente": ,
+        "telefone2_cliente": ,
+        "rua_endereco_cliente": ,
+        "numero_endereco_cliente": ,
+        "cep_cliente": ,
+        "complemento_endereco_cliente": ,
+        "bairro_endereco_cliente": ,
+        "email_cliente": 
+    }
+```
 
 ### **Observações**
 
@@ -154,7 +178,7 @@ Metodos: **[GET], [PATCH], [DELETE]**
 
 ## Listagem de Fornecedores
 
-Metodos: **[GET][POST]**
+Metodos: **[GET]**
 
 Link: http://127.0.0.1:8000/megafinance/fornecedores/api/
 
@@ -178,6 +202,32 @@ Exemplo de retorno:
         "email_fornecedor": "estoque@bernardoelizentregasexpressasme.com.br"
     }
 
+```
+
+## Cadastro de Fornecedor
+
+Metodo: **[POST]**
+
+Link: Link: http://127.0.0.1:8000/megafinance/envia-fornecedor/api/
+
+### **Campos para POST**
+
+```
+    {
+        "status_fornecedor": ,
+        "tipo_fornecedor": ,
+        "nome_fornecedor": ,
+        "cpf_fornecedor": ,
+        "cnpj_fornecedor": ,
+        "telefone1_fornecedor": ,
+        "telefone2_fornecedor": ,
+        "rua_endereco_fornecedor": ,
+        "numero_endereco_fornecedor": ,
+        "cep_fornecedor": ,
+        "complemento_endereco_fornecedor": ,
+        "bairro_endereco_fornecedor": ,
+        "email_fornecedor": 
+    }
 ```
 
 ### **Observações**
@@ -224,12 +274,40 @@ Metodo: **[GET][PATCH][DELETE]**
 Link: http://127.0.0.1:8000/megafinance/detalhe-fornecedor/api/**codigo_do_fornecedor**
 
 
-
 ## Listagem de Titulos
 
-Metodo: **[GET][POST]**
+Metodo: **[GET]**
 
 Link: http://127.0.0.1:8000/megafinance/titulos/api/
+
+### **Exemplo de Retorno**
+
+```
+    {
+        "cod_titulo": 2,
+        "status_titulo": "A",
+        "descricao_titulo": "Compra de catupiry",
+        "pagar_receber_titulo": "P",
+        "data_inicio_titulo": "2022-05-24T11:42:38-04:00",
+        "data_final_titulo": null
+    }
+```
+
+## Cadastro de Titulo
+
+Metodo: **[POST]**
+
+Link: Link: http://127.0.0.1:8000/megafinance/envia-titulo/api/
+
+### **Campos para POST**
+
+    {
+        "status_titulo": ,
+        "descricao_titulo": ,
+        "pagar_receber_titulo": ,
+        "data_inicio_titulo": ,
+        "data_final_titulo": 
+    }
 
 ### **Peculiariedades do POST**
 
@@ -237,21 +315,9 @@ Pode ou não ser passado o parametro data_inicio_titulo, caso seja enviado, o se
 
 data_final_titulo aceita null, então, se o cliente não informar nada, deverá ser encaminhado null ao servidor, do contrário, encaminhado o que for passado como parametro.
 
-### **EXEMPLO DE POST**
-
-```
-{
-        "status_titulo": "F",
-        "descricao_titulo": "Compra de Ovo",
-        "pagar_receber_titulo": "P",
-        "data_final_titulo": null
-}
-```
-
 ### **Campo Obrigatórios**
 
 1. Descrição do titulo
-
 
 ## Detalhes do Titulo
 
@@ -262,7 +328,7 @@ Link: http://127.0.0.1:8000/megafinance/detalhe-titulo/api/**codigo-do-titulo**
 
 ## Listagem do Contas a Pagar
 
-Metodo: **[GET][POST]**
+Metodo: **[GET]**
 
 Link: http://127.0.0.1:8000/megafinance/contas_a_pagar/api/
 
@@ -278,12 +344,6 @@ Link: http://127.0.0.1:8000/megafinance/contas_a_pagar/api/
     }
 ```
 
-### **Campos Obrigatórios**
-
-1. Nome do Fornecedor
-2. Valor do Titulo
-3. Codigo do Titulo
-
 ### **Peculiaridades do GET**
 
 Tanto fornecedor quanto o código do titulo virão apenas com a PK do elemento em sua determinada tabela. Para pegar essas informações, deverá ser consumido duas API's
@@ -295,6 +355,28 @@ Ambas, você passará o PK que vier, nessas API para obter os dados de cada qual
 ### **Observação**
 
 Tanto essa, quanto a API de Contas a Receber, deverão aparecer na mesma tela, com os mesmo dados, pois uma vai ser atrelada a outra.
+
+
+### Cadastro de Contas a Pagar
+
+Metodo: **[POST]**
+
+Link: http://127.0.0.1:8000/megafinance/envia-contas_a_pagar/api/
+
+```
+    {
+        "valor_titulo_a_pagar": ,
+        "valor_desconto_a_pagar": ,
+        "nome_fornecedor_contas_a_pagar": ,
+        "cod_titulo": 
+    }
+```
+
+### **Campos Obrigatórios**
+
+1. Nome do Fornecedor
+2. Valor do Titulo
+3. Codigo do Titulo
 
 ## Detalhes do Contas a Pagar
 

@@ -1,5 +1,6 @@
 from tabnanny import verbose
 from tkinter import N
+from xml.etree.ElementInclude import default_loader
 
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -59,6 +60,7 @@ class Fornecedor(models.Model):
     telefone2_fornecedor = models.CharField(max_length=25, blank=True, null=True, verbose_name='Telefone Celular')
     rua_endereco_fornecedor = models.CharField(max_length=155, verbose_name='Endereço do Fornecedor')
     numero_endereco_fornecedor = models.CharField(max_length=10, verbose_name='Numero de Endereço')
+    cidade_endereco_fornecedor = models.CharField(max_length=155, verbose_name='Cidade do Fornecedor', default='')
     cep_fornecedor = models.CharField(max_length=9, default='', verbose_name='CEP')
     complemento_endereco_fornecedor = models.CharField(max_length=155,blank=True, null=True, verbose_name='Complemento')
     bairro_endereco_fornecedor = models.CharField(max_length=155, verbose_name='Bairro')

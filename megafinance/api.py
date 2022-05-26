@@ -14,6 +14,8 @@ class ListagemClientes(APIView):
         serializer = ClientesSerializer(clientes, many=True)
         return Response(serializer.data)
 
+
+class EnviaCliente(APIView):       
     def post(self, request, format=None):
         serializer = ClientesSerializer(data=request.data)
         if serializer.is_valid():
@@ -54,7 +56,7 @@ class ListagemFornecedor(APIView):
         serializer = FornecedorSerializer(fornecedor, many=True)
         return Response(serializer.data)
 
-
+class EnviaFornecedor(APIView):
     def post(self, request, format=None):
         serializer = FornecedorSerializer(data=request.data)
         if serializer.is_valid():
@@ -97,6 +99,7 @@ class ListagemTitulos(APIView):
         serializer = TitulosSerializer(titulos, many=True)
         return Response(serializer.data)
 
+class EnviaTitulo(APIView):
     def post(self, request, format=None):
         serializer = TitulosSerializer(data=request.data)
         if serializer.is_valid():
@@ -142,12 +145,15 @@ class ListagemContas_A_Pagar(APIView):
         serializer = ContasAPagarSerializer(contasapagar, many=True)
         return Response(serializer.data)
 
+
+class EnviaContas_A_Pagar(APIView):
     def post(self, request, format=None):
         serializer = ContasAPagarSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class DetalhesContas_A_Pagar(APIView):
     def get_object(self, pk):
