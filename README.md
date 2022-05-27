@@ -74,6 +74,8 @@ Com o servidor ligado, basta consumir suas api's.
 14. [`Cadastro do Contas a Receber`](#cadastro-de-contas-a-receber)
 15. [`Detalhes do Contas a Receber`](#detalhes-do-contas-a-receber)
 
+### **API Terceiros**
+1. [ViaCEP](viacep.com.br)
 
 ## Listagem de Clientes
 
@@ -211,7 +213,7 @@ Exemplo de retorno:
 
 Metodo: **[POST]**
 
-Link: Link: http://127.0.0.1:8000/megafinance/envia-fornecedor/api/
+Link: http://127.0.0.1:8000/megafinance/envia-fornecedor/api/
 
 ### **Campos para POST**
 
@@ -441,6 +443,9 @@ Link: http://127.0.0.1:8000/megafinance/envia-contas-a-receber/api/
 Metodo: **[GET][PATCH][DELETE]**
 
 Link: http://127.0.0.1:8000/megafinance/detalhe-contas-a-receber/api/**codigo-contas-a-receber**
+
+
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
