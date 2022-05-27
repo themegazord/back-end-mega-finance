@@ -274,6 +274,10 @@ Metodo: **[GET][PATCH][DELETE]**
 Link: http://127.0.0.1:8000/megafinance/detalhe-fornecedor/api/**codigo_do_fornecedor**
 
 
+### **Particulariedades do DELETE**
+
+Foi implementado uma validação no DELETE, caso o fornecedor que foi solicitado a deleção, será validado se o mesmo tem algum vinculo com titulos a pagar dentro do sistema, se estiver com vinculo, retornará a API retornará 404 e a seguinte mensagem ("Fornecedor tem Titulo Vinculado") que poderá ser trocada para mostrar para o usuário futuramente 
+
 ## Listagem de Titulos
 
 Metodo: **[GET]**

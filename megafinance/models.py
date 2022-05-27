@@ -66,9 +66,8 @@ class Fornecedor(models.Model):
     bairro_endereco_fornecedor = models.CharField(max_length=155, verbose_name='Bairro')
     email_fornecedor = models.EmailField(verbose_name='Email do Fornecedor', blank=True, null=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.nome_fornecedor
-
 
 class Titulo(models.Model):
     STATUS_TITULO_CHOICES = [
@@ -92,7 +91,7 @@ class Titulo(models.Model):
 
 class Contas_A_Pagar(models.Model):
     cod_contas_a_pagar = models.SmallAutoField(primary_key=True, unique=True, verbose_name='Código Contas a Pagar')
-    nome_fornecedor_contas_a_pagar = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING, related_name='nome_fornecedor_contas_a_pagar', verbose_name='Nome fornecedor')
+    nome_fornecedor_contas_a_pagar = models.ForeignKey(Fornecedor, on_delete=models.CASCADE,verbose_name='Nome fornecedor')
     cod_titulo = models.ForeignKey(Titulo, on_delete=models.CASCADE, verbose_name='Código do Titulo')
     valor_titulo_a_pagar = models.PositiveIntegerField(verbose_name='Valor do Titulo')
     valor_desconto_a_pagar = models.PositiveIntegerField(

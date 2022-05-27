@@ -152,3 +152,11 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
+
+import sys
+
+if 'loaddata' in sys.argv:
+    # only change this for loaddata command.
+    DATABASES['default']['OPTIONS'] = {
+       "init_command": "SET foreign_key_checks = 0;",
+    }
