@@ -107,7 +107,7 @@ class Contas_A_Pagar(models.Model):
 
 class Contas_A_Receber(models.Model):
     cod_contas_a_receber = models.SmallAutoField(primary_key=True, unique=True, verbose_name='Código Contas a Receber')
-    nome_clinete_contas_a_pagar = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True, blank=True, related_name='nome_cliente', verbose_name='Nome do Cliente')
+    nome_cliente_contas_a_receber = models.ForeignKey(Cliente, on_delete=models.CASCADE, verbose_name='Nome do Cliente')
     cod_titulo = models.OneToOneField(Titulo, on_delete=models.CASCADE, verbose_name='Código do Titulo')
     valor_titulo_a_receber = models.PositiveIntegerField(verbose_name='Valor Titulo a Receber')
     desconto_titulo_a_receber = models.PositiveIntegerField(
@@ -115,7 +115,8 @@ class Contas_A_Receber(models.Model):
             MinValueValidator(0),
             MaxValueValidator(100)
         ],
-        verbose_name='Desconto Titulo a Receber'
+        verbose_name='Desconto Titulo a Receber',
+        blank=True, null=True
     )
 
 

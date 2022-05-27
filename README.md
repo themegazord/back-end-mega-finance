@@ -28,19 +28,19 @@ Caso precise de um tutorial de como configurar, clique **[aqui](https://www.yout
 Após você ter ou clonado, ou dado _fork_ no repositório extraído em sua máquina, você irá abrir seu terminal dentro da pasta e dar os seguintes comandos:
 
 - Para criar o ambiente virtual no seu arquivo:
-```bash
+```
 python -m venv venv
 ```
 - Para habilitar o ambiente virtual:
-```bash
+```
 venv\Scripts\activate
 ```
 - Para instalar todos os componentes do requirements.txt
-```bash
+```
 pip install -r requirements.txt
 ```
 - Para rodas todas as migrações pendentes para o banco de dados.
-```bash
+```
 python manage.py migrate
 ```
 
@@ -48,7 +48,7 @@ python manage.py migrate
 
 Para ligar o servidor:
 
-```bash
+```
 python manage.py runserver
 ```
 
@@ -70,6 +70,9 @@ Com o servidor ligado, basta consumir suas api's.
 10. [`Listagem do Contas a Pagar`](#listagem-do-contas-a-pagar)
 11. [`Cadastro de Contas a Pagar`](#cadastro-de-contas-a-pagar)
 12. [`Detalhes do Contas a Pagar`](#detalhes-do-contas-a-pagar)
+13. [`Listagem do Contas a Receber`](#listagem-contas-a-receber)
+14. [`Cadastro do Contas a Receber`](#cadastro-de-contas-a-receber)
+15. [`Detalhes do Contas a Receber`](#detalhes-do-contas-a-receber)
 
 
 ## Listagem de Clientes
@@ -367,6 +370,8 @@ Metodo: **[POST]**
 
 Link: http://127.0.0.1:8000/megafinance/envia-contas_a_pagar/api/
 
+### **Campos para o POST**
+
 ```
     {
         "valor_titulo_a_pagar": ,
@@ -378,7 +383,7 @@ Link: http://127.0.0.1:8000/megafinance/envia-contas_a_pagar/api/
 
 ### **Campos Obrigatórios**
 
-1. Nome do Fornecedor
+1. Código do Fornecedor
 2. Valor do Titulo
 3. Codigo do Titulo
 
@@ -388,6 +393,54 @@ Metodo: **[GET][PATCH][DELETE]**
 
 Link: http://127.0.0.1:8000/megafinance/detalhe-contas-a-pagar/api/**codigo_do_contas_a_pagar**
 
+
+## Listagem Contas a Receber
+
+Metodo: **[GET]**
+
+Link: http://127.0.0.1:8000/megafinance/contas-a-receber/api/
+
+### **Exemplo de retorno**
+```
+    {
+        "cod_contas_a_receber": 1,
+        "nome_cliente_contas_a_receber": 1,
+        "cod_titulo": 6,
+        "valor_titulo_a_receber": 800,
+        "desconto_titulo_a_receber": 0
+    }
+```
+
+## Cadastro de Contas a Receber
+
+Metodo: **[POST]**
+
+Link: http://127.0.0.1:8000/megafinance/envia-contas-a-receber/api/
+
+### **Campos para o POST**
+
+```
+    {
+        "cod_contas_a_receber": ,
+        "nome_cliente_contas_a_receber": ,
+        "cod_titulo": ,
+        "valor_titulo_a_receber": ,
+        "desconto_titulo_a_receber": 
+    }
+```
+
+### **Campos Obrigatórios**
+
+1. Código do Cliente
+2. Código do Titulo
+3. Valor do Titulo
+
+
+## Detalhes do Contas a Receber
+
+Metodo: **[GET][PATCH][DELETE]**
+
+Link: http://127.0.0.1:8000/megafinance/detalhe-contas-a-receber/api/**codigo-contas-a-receber**
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

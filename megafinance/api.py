@@ -46,8 +46,14 @@ class DetalhesCliente(APIView):
 
     def delete(self, request, pk, format=None):
         cliente = self.get_object(pk)
-        cliente.delete()
-        return Response(status = status.HTTP_204_NO_CONTENT)
+
+        car = Contas_A_Receber.objects.filter(nome_cliente_contas_a_receber__exact=cliente).first()
+        serializer = ContasAReceberSerializer(car)
+        if serializer.data['nome_cliente_contas_a_receber'] is not None:
+            return Response('Cliente tem Titulo Vinculado', status=status.HTTP_400_BAD_REQUEST)
+        else:
+            cliente.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
     
 
 class ListagemFornecedor(APIView):
@@ -95,8 +101,7 @@ class DetalhesFornecedor(APIView):
         if serializer.data['nome_fornecedor_contas_a_pagar'] is not None:
             return Response('Fornecedor tem Titulo Vinculado', status=status.HTTP_400_BAD_REQUEST)
         else:
-            fornecedor = self.get_object(pk)
-            fornecedor.delete()
+            forneca.delete()
             return Response(status = status.HTTP_204_NO_CONTENT)
 
 
@@ -195,23 +200,53 @@ class DetalhesContas_A_Pagar(APIView):
         contasapagar.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class ConsultaClienteTitulo(APIView):
-    def get_fornecedor(self, pk):
+class ListagemContas_A_Receber(APIView):
+    def get(self, request, format=None):
+        contasareceber = Contas_A_Receber.objects.all()
+        serializer = ContasAReceberSerializer(contasareceber, many=True)
+        return Response(serializer.data)
+
+
+class EnvioContas_A_Receber(APIView):
+    def post(self, request, format=None):
+        serializer = ContasAReceberSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DetalhesContas_A_Receber(APIView):
+    def get_object(self, pk):
         try:
-            return Fornecedor.objects.get(pk=pk)
-        except Fornecedor.DoesNotExist:
+            return Contas_A_Receber.objects.get(pk=pk)
+        except Contas_A_Receber.DoesNotExist:
             raise Http404
     
-    def query_forn_cap(self, pk):
-        forneca = self.get_fornecedor(pk)
-        try:
-            return Contas_A_Pagar.objects.filter(nome_fornecedor_contas_a_pagar__exact=forneca).first()
-        except Contas_A_Pagar.DoesNotExist:
-            raise Http404
 
     def get(self, request, pk, format=None):
-        cap = self.query_forn_cap(pk)
-        serializer = ContasAPagarSerializer(cap)
+        contasareceber = self.get_object(pk)
+        serializer = ContasAReceberSerializer(contasareceber)
         return Response(serializer.data)
+
+    
+    def patch(self, request, pk, format=None):
+        contasareceber = self.get_object(pk)
+        serializer = ContasAReceberSerializer(
+            contasareceber, 
+            data=request.data,
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        contasareceber = self.get_object(pk)
+        contasareceber.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 

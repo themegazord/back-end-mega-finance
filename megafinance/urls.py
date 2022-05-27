@@ -21,7 +21,11 @@ urlpatterns = [
     path('megafinance/contas-a-pagar/api/', api.ListagemContas_A_Pagar.as_view()),
     path('megafinance/envia-contas-a-pagar/api/', api.EnviaContas_A_Pagar.as_view()),
     path('megafinance/detalhe-contas-a-pagar/api/<int:pk>/', api.DetalhesContas_A_Pagar.as_view()),
-    #API'S TESTE
-    path('megafinance/teste-api/<int:pk>', api.ConsultaClienteTitulo.as_view())
+    #Api's Contas a Receber
+    path('megafinance/contas-a-receber/api/', api.ListagemContas_A_Receber.as_view()),
+    path('megafinance/envia-contas-a-receber/api/', api.EnvioContas_A_Receber.as_view()),
+    path('megafinance/detalhe-contas-a-receber/api/<int:pk>/', api.DetalhesContas_A_Receber.as_view()),
+
+    
 ]
 

@@ -28,8 +28,19 @@ class ContasAPagarSerializer(serializers.ModelSerializer):
         fields= ['cod_contas_a_pagar', 'valor_titulo_a_pagar', 'valor_desconto_a_pagar', 'nome_fornecedor_contas_a_pagar', 'cod_titulo']
 
     nome_fornecedor_contas_a_pagar = serializers.PrimaryKeyRelatedField(
-            queryset=Fornecedor.objects.all()
+        queryset=Fornecedor.objects.all()
     )
     cod_titulo = serializers.PrimaryKeyRelatedField(
-            queryset=Titulo.objects.all()
+        queryset=Titulo.objects.all()
+    )
+
+class ContasAReceberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contas_A_Receber
+        fields = ['cod_contas_a_receber', 'nome_cliente_contas_a_receber', 'cod_titulo', 'valor_titulo_a_receber', 'desconto_titulo_a_receber']
+    nome_cliente_contas_a_receber = serializers.PrimaryKeyRelatedField(
+        queryset=Cliente.objects.all()
+    )
+    cod_titulo = serializers.PrimaryKeyRelatedField(
+        queryset=Titulo.objects.all()
     )
